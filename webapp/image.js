@@ -4,17 +4,39 @@ console.debug = function() {};
  */
  window.addEventListener("load", function()
  {
-    console.log("SSDP multicast app starts");
-    var connect = document.getElementById("start");
-    connect.onclick = StartImageLoad;
+    console.log("Image Load Test");
+    var single = document.getElementById("LoadSingle");
+    single.onclick = LoadSingleImage;
 
-    output = document.getElementById("output");
+    var multiple = document.getElementById("LoadMultiple");
+    multiple.onclick = LoadMultipleImage;
+
 });
+
+var LoadSingleImage = function()
+{
+    console.log("Load Simgle Image");
+    var url = "http://2.media.bustedtees.cvcdn.com/e/-/bustedtees.e8c2409e-884a-4500-9287-ec9ec26933f5.jpg";
+
+    var img = document.getElementById("img").getElementsByTagName("img");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'blob';
+
+    xhr.onload = function(e) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var blob = xhr.response;
+            img.src = window.URL.createObjectURL(blob);
+        }
+    };
+    xhr.send();
+}
 
 /*
  * This function will be called when "SSDP Start" button is pushed.
  */
- var StartImageLoad = function()
+ var LoadMultipleImage = function()
  {
     var url = ["http://8.media.bustedtees.cvcdn.com/1/-/bustedtees.21419ad1-ed60-40a0-86ff-823a06226f42.jpg",
     "http://4.media.bustedtees.cvcdn.com/9/-/bustedtees.3cfc1519-e42f-4376-8fbf-980df580fb44.jpg",
