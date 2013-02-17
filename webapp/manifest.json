@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "SSDP",
-  "description": "SSDP Multicast",
+  "name": "Load Image",
+  "description": "Load Image",
   "version": "1",
   "minimum_chrome_version": "23",
   "app": {
